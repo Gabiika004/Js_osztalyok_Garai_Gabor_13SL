@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Téglalap</title>
+    <script src="Teglalap.js"></script>
+</head>
+<body>
+    <label for="input_a">A:</label><br>
+    <input type="number" id="input_a"><br>
+    <label for="input_b">B:</label><br>
+    <input type="number" id="input_b"><br>
+    <button onclick="hozzaad()">Hozzáad</button> <br>
+
+    <button onclick="kirajzol()">Kirajzol</button>
+    <table>
+        <thead>
+            <tr>
+                <th>a</th>
+                <th>b</th>
+                <th>K</th>
+                <th>T</th>
+            </tr>
+        </thead>
+        <tbody id="teglalapok">
+
+        </tbody>
+    </table>
+
+    <script>
+
+        var teglalapok = [];
+
+        function hozzaad(){
+            let a = parseFloat(document.getElementById('input_a').value);
+            let b = parseFloat(document.getElementById('input_b').value);
+            let teglalap = new Teglalap(a, b);
+            teglalapok.push(teglalap);
+            console.table(teglalapok);
+        }
+
+        function kirajzol() {
+            let html = "";
+            teglalapok.forEach(teglalap => {
+                html += teglalap.tablazatSor();
+            });
+            document.getElementById('teglalapok').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
